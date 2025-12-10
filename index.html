@@ -6,53 +6,94 @@
     <title>Le Challenge du Partenaire Expert - Pays Tarusate</title>
     
     <style>
-        /* --- STYLES (Design Premium) --- */
-        :root { --primary: #88b04b; --primary-dark: #6b8f3a; --secondary: #e67e22; --bg-color: #f3f4f6; --card-bg: #ffffff; --text-main: #2d3748; --success: #48bb78; --error: #f56565; --info: #4299e1; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; overflow-x: hidden; }
-        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 6px; background: #e2e8f0; z-index: 1000; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); width: 0%; transition: width 0.4s ease; }
-        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
-        header { text-align: center; background: var(--card-bg); padding: 40px 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 40px; animation: slideDown 0.8s ease-out; position: relative; overflow: hidden; }
-        header::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; background: var(--primary); }
-        h1 { color: var(--primary-dark); margin: 0 0 15px 0; font-size: 2.2em; }
+        /* --- CHARTE GRAPHIQUE PAYS TARUSATE --- */
+        :root { 
+            --primary: #88b04b; /* Vert "Cœur des Landes" */
+            --primary-dark: #6b8f3a; 
+            --secondary: #e67e22; /* Orange */
+            --bg-color: #f9fbf9; 
+            --card-bg: #ffffff; 
+            --text-main: #2d3748; 
+            --success: #48bb78; 
+            --error: #e53e3e; 
+            --info: #3182ce; 
+        }
+
+        body { 
+            font-family: 'Segoe UI', 'Roboto', sans-serif; 
+            background-color: var(--bg-color);
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden;
+            /* Motif subtil pour habiller le fond */
+            background-image: radial-gradient(#88b04b20 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* --- ÉLÉMENTS VISUELS (Vagues) --- */
+        .wave-top {
+            position: fixed; top: 0; left: 0; width: 100%; height: 140px; z-index: -1;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-container { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 8px; background: rgba(255,255,255,0.3); z-index: 1000; 
+        }
+        .progress-bar { 
+            height: 100%; background: var(--secondary); width: 0%; transition: width 0.4s ease; box-shadow: 0 0 10px var(--secondary);
+        }
+
+        .container { max-width: 800px; margin: 60px auto; padding: 20px; position: relative; }
+
+        /* --- HEADER --- */
+        header { 
+            text-align: center; 
+            background: var(--card-bg); 
+            padding: 40px 30px; 
+            border-radius: 25px; 
+            box-shadow: 0 15px 35px rgba(136, 176, 75, 0.15); 
+            margin-bottom: 40px; 
+            animation: slideDown 0.8s ease-out; 
+            position: relative;
+            border-top: 6px solid var(--secondary);
+        }
+
+        h1 { color: var(--primary-dark); margin: 0 0 10px 0; font-size: 2.2em; letter-spacing: -0.5px; }
         .intro { color: #718096; font-size: 1.1em; line-height: 1.6; }
         
-        /* Styles Intro Panel */
-        #intro-panel { text-align: center; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-top: 20px; animation: fadeInUp 0.5s; }
-        .start-btn { background: var(--primary); color: white; padding: 15px 40px; font-size: 1.2em; border: none; border-radius: 50px; cursor: pointer; transition: transform 0.2s, background 0.2s; margin-top: 20px; }
-        .start-btn:hover { transform: scale(1.05); background: var(--primary-dark); }
-        #quiz-content { display: none; } /* Caché au début */
-
-        .section-badge { display: inline-block; background: var(--primary); color: white; padding: 8px 16px; border-radius: 50px; font-weight: bold; font-size: 0.9em; margin: 30px 0 15px 0; box-shadow: 0 4px 6px rgba(136, 176, 75, 0.3); opacity: 0; animation: fadeIn 0.5s forwards; }
-        .card { background: var(--card-bg); border-radius: 16px; padding: 30px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.3s, box-shadow 0.3s; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s forwards; border-left: 5px solid transparent; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        /* --- Autres Styles --- */
+        .section-badge { display: inline-block; background: var(--primary); color: white; padding: 8px 20px; border-radius: 50px; font-weight: bold; font-size: 0.9em; margin: 30px 0 15px 0; box-shadow: 0 4px 10px rgba(136, 176, 75, 0.4); opacity: 0; animation: fadeIn 0.5s forwards; }
+        .card { background: var(--card-bg); border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid #f0f0f0; transition: transform 0.3s, box-shadow 0.3s; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s forwards; border-left: 6px solid transparent; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
         .card.answered { border-left-color: var(--primary); }
         h3 { margin-top: 0; color: #2d3748; font-size: 1.25em; }
         .hint { color: #a0aec0; font-style: italic; font-size: 0.9em; display: block; margin-bottom: 20px; }
         .options-grid { display: flex; flex-direction: column; gap: 12px; }
-        .option-btn { background: #fff; border: 2px solid #e2e8f0; padding: 15px 20px; border-radius: 12px; cursor: pointer; text-align: left; font-size: 1em; transition: all 0.2s; display: flex; align-items: center; position: relative; overflow: hidden; }
+        .option-btn { background: #fff; border: 2px solid #edf2f7; padding: 15px 20px; border-radius: 15px; cursor: pointer; text-align: left; font-size: 1em; transition: all 0.2s; display: flex; align-items: center; position: relative; overflow: hidden; }
         .option-btn:hover:not(.disabled) { border-color: var(--primary); background: #f0fff4; }
         .option-btn input { margin-right: 15px; transform: scale(1.3); accent-color: var(--primary); }
         .option-btn.correct { background: #f0fff4; border-color: var(--success); color: #22543d; animation: pulse 0.5s; }
         .option-btn.wrong { background: #fff5f5; border-color: var(--error); color: #742a2a; animation: shake 0.5s; }
         .option-btn.info-select { background: #ebf8ff; border-color: var(--info); color: #2c5282; }
         .option-btn.disabled { pointer-events: none; opacity: 0.7; }
-        .input-area { display: none; margin-left: 20px; margin-top: 5px; padding-left: 15px; border-left: 3px solid #e2e8f0; animation: slideIn 0.3s; }
-        .custom-input { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.95em; }
+        .input-area { display: none; margin-left: 20px; margin-top: 10px; padding-left: 15px; border-left: 3px solid #e2e8f0; animation: slideIn 0.3s; }
+        .custom-input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 15px; box-sizing: border-box; font-family: inherit; font-size: 1em; transition: border 0.3s; }
         .custom-input:focus { border-color: var(--primary); outline: none; }
-        .feedback { margin-top: 20px; padding: 15px; border-radius: 10px; font-size: 0.95em; display: none; animation: slideIn 0.3s ease-out; }
+        .validate-btn, .start-btn { background: var(--secondary); color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: background 0.3s, transform 0.2s; box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3); }
+        .validate-btn:hover, .start-btn:hover { background: #d35400; transform: translateY(-2px); }
+        .validate-btn:disabled { background: #cbd5e0; cursor: default; transform: none; box-shadow: none; }
+        .feedback { margin-top: 20px; padding: 15px; border-radius: 12px; font-size: 0.95em; display: none; animation: slideIn 0.3s ease-out; }
         .fb-success { background: #c6f6d5; color: #22543d; border: 1px solid #9ae6b4; }
         .fb-error { background: #fed7d7; color: #742a2a; border: 1px solid #feb2b2; }
         .fb-info { background: #bee3f8; color: #2a4365; border: 1px solid #90cdf4; }
-        .validate-btn { background: var(--secondary); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: background 0.3s; }
-        .validate-btn:hover { background: #c05600; }
-        .validate-btn:disabled { background: #cbd5e0; cursor: default; }
-        #final-section { text-align: center; background: white; padding: 50px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: none; margin-top: 50px; position: relative; z-index: 10; }
-        .score-circle { width: 150px; height: 150px; background: linear-gradient(135deg, var(--primary), #48bb78); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3em; font-weight: bold; margin: 0 auto 20px auto; box-shadow: 0 10px 20px rgba(72, 187, 120, 0.4); animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .final-msg { font-size: 1.5em; font-weight: bold; color: var(--text-main); margin-bottom: 10px; }
-        .final-sub { color: #718096; }
+        #intro-panel { text-align: center; background: white; padding: 50px 30px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); margin-top: 40px; animation: fadeInUp 0.5s; border-bottom: 8px solid var(--primary); }
+        #final-section { text-align: center; background: white; padding: 50px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); display: none; margin-top: 50px; position: relative; z-index: 10; border-top: 8px solid var(--success); }
+        .score-circle { width: 140px; height: 140px; background: linear-gradient(135deg, var(--primary), #6b8f3a); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3em; font-weight: bold; margin: 0 auto 20px auto; box-shadow: 0 10px 25px rgba(107, 143, 58, 0.4); animation: popIn 0.8s; }
         .save-status { margin-top: 15px; font-size: 0.9em; color: #718096; font-style: italic; }
-
         @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
@@ -66,6 +107,7 @@
 </head>
 <body>
 
+<div class="wave-top"></div>
 <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
 <canvas id="confetti-canvas"></canvas>
 
@@ -77,16 +119,18 @@
 
     <!-- ECRAN DE DEMARRAGE (RAISON SOCIALE) -->
     <div id="intro-panel">
-        <h2 style="color: var(--primary-dark);">Bienvenue ! 👋</h2>
-        <p>Pour commencer, merci de nous indiquer le nom de votre structure :</p>
-        <input type="text" id="companyInput" class="custom-input" placeholder="Ex: Restaurant Chez Pierre, Gîte des Pins..." autofocus>
-        <br>
-        <button class="start-btn" onclick="startQuiz()">Commencer le Quizz 🚀</button>
+        <h2 style="color: var(--primary-dark); margin-bottom: 30px;">Bienvenue ! 👋</h2>
+        
+        <label for="companyInput" style="display:block; margin-bottom:10px; color:#666; font-weight:600;">Nom de votre structure :</label>
+        <input type="text" id="companyInput" class="custom-input" placeholder="Ex: Restaurant Chez Pierre..." autofocus>
+        
+        <button class="start-btn" onclick="startQuiz()">Commencer</button>
     </div>
 
-    <!-- CONTENU DU QUIZZ (Caché au départ) -->
-    <div id="quiz-content">
-        <!-- LES QUESTIONS -->
+    <!-- CONTENU DU QUIZZ -->
+    <div id="quiz-content" style="display:none;">
+        
+        <!-- SECTION 1 -->
         <div class="section-badge d-1">1. Le Territoire</div>
         
         <div class="card d-1" id="card-A">
@@ -99,7 +143,7 @@
                 <label class="option-btn"><input type="checkbox" value="tartas"> Tartas</label>
                 <label class="option-btn"><input type="checkbox" value="rion"> Rion-des-Landes</label>
             </div>
-            <button class="validate-btn" onclick="validateCheckboxQ(this)">Valider ma réponse</button>
+            <button class="validate-btn" onclick="validateCheckboxQ(this)">Valider</button>
             <div class="feedback"></div>
         </div>
 
@@ -114,6 +158,7 @@
             <div class="feedback"></div>
         </div>
 
+        <!-- SECTION 2 -->
         <div class="section-badge d-3">2. La Structure</div>
 
         <div class="card d-3">
@@ -151,6 +196,7 @@
             <div class="feedback"></div>
         </div>
 
+        <!-- SECTION 3 -->
         <div class="section-badge">3. Les Services</div>
 
         <div class="card">
@@ -187,7 +233,7 @@
     // ---------------------------------------------------------
     // 1. URL DE TON GOOGLE APPS SCRIPT
     // ---------------------------------------------------------
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUmlyycl17kPOd0XXuklvSE609thLFxjlJCxUqy9_3Zqk4jCscFrsX3NPkgoYbm6fW/exec"; 
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyP0_-V68eobXnkuBWwsvd0_GJSSHdBeei4cANETkYLfj5R5A2dbFq85nC7Y_nWevh-rQ/exec"; 
 
     // ---------------------------------------------------------
     // 2. LOGIQUE DU QUIZZ
@@ -338,7 +384,7 @@
     // --- ENVOI VERS GOOGLE SHEET ---
     function sendDataToSheet() {
         const msg = document.getElementById('save-msg');
-        if(GOOGLE_SCRIPT_URL === "COLLE_TON_URL_GOOGLE_SCRIPT_ICI") {
+        if(GOOGLE_SCRIPT_URL.includes("COLLE_TON_NOUVEAU_LIEN_ICI")) {
             msg.innerText = "⚠️ Erreur : L'URL du script n'a pas été configurée.";
             return;
         }
