@@ -1,0 +1,32 @@
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    
+    // Logique Oui/Non pour les adhérents
+    var reponseAdherents = data.qE;
+    var aReponduOui = (reponseAdherents === "Non" || reponseAdherents === "Ne connait personne" || reponseAdherents === "Non renseigné") ? "Non" : "Oui";
+
+    // Ajout de la ligne avec la Raison Sociale en 2ème position
+    sheet.appendRow([
+      new Date(),           // Col A : Date
+      data.companyName,     // Col B : RAISON SOCIALE
+      data.score,           // Col C : SCORE
+      data.qA,              // Col D : ARENES
+      data.qB,              // Col E : TERRA
+      data.qC,              // Col F : TRÉSORIER
+      data.qD,              // Col G : CHARLOTTE
+      aReponduOui,          // Col H : ADHÉRENTS (Oui/Non)
+      data.qE,              // Col I : ADHÉRENTS CITÉS
+      data.qF,              // Col J : BILLETERIE
+      data.qG               // Col K : OUTILS HÉBERGEURS
+    ]);
+    
+    return ContentService.createTextOutput(JSON.stringify({"result":"success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch(error) {
+    return ContentService.createTextOutput(JSON.stringify({"result":"error", "error": error}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
